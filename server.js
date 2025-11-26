@@ -29,15 +29,10 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/otp', otpRoutes);
 
-// Test route
-app.get('/', (req, res) => {
-  res.send('In$€₹T Backend is running!');
-});
-
 // Serve static frontend files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Handle SPA routing
+// Handle SPA routing (all routes should serve index.html)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
