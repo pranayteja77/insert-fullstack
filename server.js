@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   res.send('In$€₹T Backend is running!');
 });
 
-// Serve static frontend files
+// Serve static frontend files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle SPA routing
