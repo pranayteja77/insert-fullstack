@@ -16,6 +16,8 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+
 // Configure CORS for production
 const corsOptions = {
   origin: [
@@ -27,6 +29,14 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
 };
+
+// Add this after your other middleware
+console.log('Environment variables:', {
+  DATABASE_URL: process.env.DATABASE_URL ? 'SET' : 'MISSING',
+  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ? 'SET' : 'MISSING',
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME ? 'SET' : 'MISSING',
+  JWT_SECRET: process.env.JWT_SECRET ? 'SET' : 'MISSING'
+});
 
 const cors = require('cors');
 app.use(cors(corsOptions));
