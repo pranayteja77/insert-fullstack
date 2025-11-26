@@ -16,8 +16,20 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configure CORS for production
+const corsOptions = {
+  origin: [
+    'http://localhost:5173', // Local development
+    'https://insert-fullstack.onrender.com', // Your Render URL
+    'https://www.insert-fullstack.onrender.com' // WWW version
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+};
+
 const cors = require('cors');
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Serve static files from uploads folder
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
